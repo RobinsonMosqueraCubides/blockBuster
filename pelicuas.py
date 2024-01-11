@@ -1,6 +1,6 @@
 import os
 peliculas = {'A01': {'nombre': 'Robocot', 'genero': 'Accion', 'duracion': '2:36:24'}}
-actores = {}
+actores = {'Ac01': {'nombre': 'PepitoPerez', 'rol': ('Protagonista', 'Antagonista', 'Reparto')}}
 
 def crearPeliculas():
     conA=0
@@ -39,20 +39,16 @@ def crearPeliculas():
             print("Ingrese el nombre del actor:\n(Sin espacios y la primera letra en mayuscula ejemplo: PepitoPerez)")
             nombreActor = input("")
             for id in actores:
-                if nombreActor in actores[id]:
+                if nombreActor in actores[id].values():
                     print("Selecione el rol:\n\t1.Principal\n\t2.Antagonista\n\t3.Reparto")
-                    selec = int(input(""))
-                    if selec == 1: rol = 'Principal'
-                    elif selec == 2: rol = 'Antagonista'
-                    elif selec == 3: rol = 'Reparto'
-                    else: 
-                        print("Ingrese un numero del 1 al 3")
-                        continue
-                    
+                    selec = int(input(""))                  
+                    rol = actores[id]['rol'][selec]
                     peliculas[codigo]={'nombre':nombre,
                                        'genero':genero,
                                        'duracion':duracion,
-                                       'actores':{id:actores.get(id,{})}}
+                                       'actores':{id:{'Nombre':nombre,
+                                                      'rol':rol                                           
+                                       }}}
                 else:
                     print("Actor no existe")
                     break
@@ -61,16 +57,13 @@ def crearPeliculas():
             if selec == 1: continue
             elif selec == 2:break
             else: print("Ingrese 1 o 2")
-        peliculas[codigo]={'nombre':nombre,
-                           'genero':genero,
-                           'duracion':duracion,}
         print("desea agregar otra pelicula?:\n\t1. Si \n\t2. no")
         selec = int(input(""))
         if selec == 1: continue
         elif selec == 2:break
         else: print("Ingrese 1 o 2")
     print(peliculas)
-        
+crearPeliculas()        
 def editarPeliculas():
     while True:
         os.system('clear')
@@ -135,4 +128,3 @@ def eliminarPelicula():
         elif selec == 2:break
         else: break
     print(peliculas[codigo])
-eliminarPelicula()
