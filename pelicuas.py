@@ -1,5 +1,5 @@
 import os
-peliculas = {}
+peliculas = {'A01': {'nombre': 'Robocot', 'genero': 'Accion', 'duracion': '2:36:24'}}
 actores = {}
 
 def crearPeliculas():
@@ -71,4 +71,68 @@ def crearPeliculas():
         else: print("Ingrese 1 o 2")
     print(peliculas)
         
-crearPeliculas()
+def editarPeliculas():
+    while True:
+        os.system('clear')
+        print("ingrese el codigo de la pelicula:")
+        codigo = input("")
+        if codigo in peliculas:
+            print("Que deseas modificar:\n\t1. Nombre\n\t2. genero \n\t3. Duracion \n\t4. Actores")
+            selec = int(input(""))
+            if selec == 1:
+                print("Ingrese el nombre de la pelicula (sin espacios):")
+                nombre = input("")
+                peliculas[codigo]['nombre'] = nombre
+            elif selec == 2: 
+                print("Selecione el genero de la pelicula: \n\t1. Accion\n\t2. Drama\n\t3. Romance")
+                selec = int(input(""))
+                if selec == 1: genero = 'Accion'
+                elif selec == 2: genero = 'Drama'
+                elif selec == 3: genero = 'Romance'
+                else: genero = 'sin determinar'
+                peliculas[codigo]['genero']=genero
+            elif selec == 3:
+                print("Ingrese la duracion:\ncantidad de horas:")
+                hora = input("")
+                print("minutos:")
+                minutos = input("")
+                print("Segundos:")
+                segundos = input("")
+                peliculas[codigo]['duracion']=str(f"{hora}:{minutos}:{segundos}")
+            else:
+                print('ingrese un numero del 1 al 3')
+                input()
+                continue
+        else:
+            print("pelicula no existe")
+            input()
+            break
+        print("desea editar otra pelicula?:\n\t1. Si \n\t2. no")
+        selec = int(input(""))
+        if selec == 1: continue
+        elif selec == 2:break
+        else: break
+    
+def eliminarPelicula():
+    while True:
+        os.system('clear')
+        print('Ingrese el codigo de la pelicula')
+        codigo = input("")
+        if codigo in peliculas:
+            print(f"Deseas elminar a {peliculas[codigo]['nombre']}?\n\t1. Si \n\t2. No")
+            selec = int(input(""))
+            if selec == 1:
+                peliculas[codigo]={}
+            elif selec == 2: break
+            else: continue
+        else:
+            print("pelicula no existe")
+            input()
+            continue
+        print("desea eliminar otra pelicula?:\n\t1. Si \n\t2. no")
+        selec = int(input(""))
+        if selec == 1: continue
+        elif selec == 2:break
+        else: break
+    print(peliculas[codigo])
+eliminarPelicula()
