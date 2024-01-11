@@ -1,5 +1,6 @@
 import os
-import json
+from manejoErrores import *
+#import json
 #movie = "peliculas.json"
 #contadore1 = "contadores1.json"
 #dict={}
@@ -21,7 +22,7 @@ def crearPeliculas()->str:
         while True:
             os.system('clear')
             print("Selecione el genero de la pelicula: \n\t1. Accion\n\t2. Drama\n\t3. Romance")
-            selec = int(input(""))
+            selec = manejoEnteros()
             if selec ==1:
                 genero = 'Accion'
                 conA+=1
@@ -41,11 +42,11 @@ def crearPeliculas()->str:
             print("Ingrese el nombre de la pelicula (sin espacios):")
             nombre = input("")
             print("Ingrese la duracion:\ncantidad de horas:")
-            hora = input("")
+            hora = manejoEnteros()
             print("minutos:")
-            minutos = input("")
+            minutos = manejoEnteros()
             print("Segundos:")
-            segundos = input("")
+            segundos = manejoEnteros()
             duracion = str(f"{hora}:{minutos}:{segundos}")
             while True:            
                 print("Ingrese el nombre del actor:\n(Sin espacios y la primera letra en mayuscula ejemplo: PepitoPerez)")
@@ -53,7 +54,7 @@ def crearPeliculas()->str:
                 for id in actores:
                     if nombreActor in actores[id].values():
                         print("Selecione el rol:\n\t1.Principal\n\t2.Antagonista\n\t3.Reparto")
-                        selec = int(input(""))                  
+                        selec = manejoEnteros()                  
                         rol = actores[id]['rol'][selec-1]
                         peliculas[codigo]={'nombre':nombre,
                                         'genero':genero,
@@ -65,12 +66,12 @@ def crearPeliculas()->str:
                         print("Actor no existe")
                         break
                 print("desea agregar otro actor?:\n\t1. Si \n\t2. no")
-                selec = int(input(""))
+                selec = manejoEnteros()
                 if selec == 1: continue
                 elif selec == 2:break
                 else: print("Ingrese 1 o 2")
             print("desea agregar otra pelicula?:\n\t1. Si \n\t2. no")
-            selec = int(input(""))
+            selec = manejoEnteros()
             if selec == 1: continue
             elif selec == 2:break
             else: print("Ingrese 1 o 2")
@@ -92,14 +93,14 @@ def editarPeliculas():
         codigo = input("")
         if codigo in peliculas:
             print("Que deseas modificar:\n\t1. Nombre\n\t2. genero \n\t3. Duracion \n\t4. Actores")
-            selec = int(input(""))
+            selec = manejoEnteros()
             if selec == 1:
                 print("Ingrese el nombre de la pelicula (sin espacios):")
                 nombre = input("")
                 peliculas[codigo]['nombre'] = nombre
             elif selec == 2: 
                 print("Selecione el genero de la pelicula: \n\t1. Accion\n\t2. Drama\n\t3. Romance")
-                selec = int(input(""))
+                selec = manejoEnteros()
                 if selec == 1: genero = 'Accion'
                 elif selec == 2: genero = 'Drama'
                 elif selec == 3: genero = 'Romance'
@@ -107,11 +108,11 @@ def editarPeliculas():
                 peliculas[codigo]['genero']=genero
             elif selec == 3:
                 print("Ingrese la duracion:\ncantidad de horas:")
-                hora = input("")
+                hora = manejoEnteros()
                 print("minutos:")
-                minutos = input("")
+                minutos = manejoEnteros()
                 print("Segundos:")
-                segundos = input("")
+                segundos = manejoEnteros()
                 peliculas[codigo]['duracion']=str(f"{hora}:{minutos}:{segundos}")
             else:
                 print('ingrese un numero del 1 al 3')
@@ -122,7 +123,7 @@ def editarPeliculas():
             input()
             break
         print("desea editar otra pelicula?:\n\t1. Si \n\t2. no")
-        selec = int(input(""))
+        selec = manejoEnteros()
         if selec == 1: continue
         elif selec == 2:break
         else: break
