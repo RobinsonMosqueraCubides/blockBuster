@@ -2,7 +2,7 @@ def manejoEnteros():
     while True:
         try:
             x=float(input(""))
-            return x
+            return int(x)
         except: print("Ingrese un numero")
 def letras():
     while True:

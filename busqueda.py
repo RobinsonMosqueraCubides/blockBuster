@@ -31,22 +31,4 @@ def busqueraNombre(peliculas):
             print(f"{codigo}\t|\t{peliculas[codigo]['nombre']}\t|\t{peliculas[codigo]['genero']}\t|\t{peliculas[codigo]['duracion']} \t|")
             input()
     
-def crearActor(actores):
-    contActor = 0
-    while True:
-        os.system('clear')
-        print("Ingrese el nombre del actor:\n(Sin espacios y con la primera mayusculas ejemplo PepitoPerez)")
-        nombre = input("")      
-        contActor+=1
-        codigoActor = f"Ac0{contActor}"
-        actores[codigoActor] = {'nombre':nombre,
-                                'rol':('Protagonista','Antagonista','Reparto')               
-                } 
-        print("desea agregar otro actor?:\n\t1. Si \n\t2. no")
-        selec = int(input(""))
-        if selec == 1: continue
-        elif selec == 2:break
-        else: break
-    
-    print(actores)
-    input("Preciona Enter")
+

@@ -1,7 +1,30 @@
 {
-    "A01": {
+    "P01": {
         "nombre": "Robocot",
-        "genero": "Accion",
-        "duracion": "2:36:24"
+        "genero": {
+            "id": "G01",
+            "nombre": "Accion"
+        },
+        "duracion": "2:36:50",
+        "actores": {
+            "Ac01": {
+                "Nombre": "PepitoPerez",
+                "rol": "Antagonista"
+            }
+        }
+    },
+    "P02": {
+        "nombre": "Lola",
+        "genero": {
+            "id": "G01",
+            "nombre": "Accion"
+        },
+        "duracion": "2:39:40",
+        "actores": {
+            "Ac01": {
+                "nombre": "PepitoPerez",
+                "rol": "Antagonista"
+            }
+        }
     }
 }

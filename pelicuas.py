@@ -1,44 +1,13 @@
 import os
 from manejoErrores import *
-#import json
-#movie = "peliculas.json"
-#contadore1 = "contadores1.json"
-#dict={}
-#contador = []
-    
-#with open(movie,'r') as archivo:
-#        dict=json.load(archivo)
-#with open(contadore1,'r') as archivo1:
-#        contador=json.load(archivo1)
+import json
+movie = "peliculas.json"
 
-peliculas = {'A01': {'nombre': 'Robocot', 'genero': 'Accion', 'duracion': '2:36:24'}}
-actores = {'Ac01': {'nombre': 'PepitoPerez', 'rol': ('Protagonista', 'Antagonista', 'Reparto')}}
-
-def crearPeliculas()->str:
-
-        conA=0
-        conD=0
-        conR=0
+def crearPeliculas(peliculas,genero,actores):
         while True:
+            contP = len(peliculas)
+            codigo = f"P0{contP+1}"
             os.system('clear')
-            print("Selecione el genero de la pelicula: \n\t1. Accion\n\t2. Drama\n\t3. Romance")
-            selec = manejoEnteros()
-            if selec ==1:
-                genero = 'Accion'
-                conA+=1
-                codigo = str(f"A0{conA}")
-            elif selec == 2:
-                genero = 'Drama'
-                conD+=1
-                codigo = str(f"D0{conD}")
-            elif selec == 3:
-                genero = 'Romanace'
-                conR+=1
-                codigo = str(f"R0{conR}")
-            else:
-                print("Ingresa un numero del 1 al 3")
-                input()
-                continue
             print("Ingrese el nombre de la pelicula (sin espacios):")
             nombre = input("")
             print("Ingrese la duracion:\ncantidad de horas:")
@@ -48,7 +17,8 @@ def crearPeliculas()->str:
             print("Segundos:")
             segundos = manejoEnteros()
             duracion = str(f"{hora}:{minutos}:{segundos}")
-            while True:            
+            actorTemporal = {}                
+            while True:
                 print("Ingrese el nombre del actor:\n(Sin espacios y la primera letra en mayuscula ejemplo: PepitoPerez)")
                 nombreActor = input("")
                 for id in actores:
@@ -56,37 +26,50 @@ def crearPeliculas()->str:
                         print("Selecione el rol:\n\t1.Principal\n\t2.Antagonista\n\t3.Reparto")
                         selec = manejoEnteros()                  
                         rol = actores[id]['rol'][selec-1]
-                        peliculas[codigo]={'nombre':nombre,
-                                        'genero':genero,
-                                        'duracion':duracion,
-                                        'actores':{id:{'Nombre':nombreActor,
-                                                        'rol':rol                                           
-                                        }}}
+                        actorTemporal[id]={'nombre':nombreActor,
+                                           'rol':rol}
+                        bandera1 = True
+                        
                     else:
-                        print("Actor no existe")
-                        break
+                        print("Actor no existe\nEnter para continuar")
+                        input()
+                            
                 print("desea agregar otro actor?:\n\t1. Si \n\t2. no")
                 selec = manejoEnteros()
                 if selec == 1: continue
                 elif selec == 2:break
-                else: print("Ingrese 1 o 2")
+                else: break
+            print("Ingresa el nombre del genero")
+            generoP = input("")
+            for clave in genero:
+                if generoP == genero[clave]['nombre']:
+                    generoP = genero[clave]
+                    bandera = True
+                else:
+                    print("Genero no existe\nEnter para continuar")
+                    input()
+            if bandera and bandera1:
+                peliculas[codigo]={'nombre':nombre,
+                                        'genero':generoP,
+                                        'duracion':duracion,
+                                        'actores':actorTemporal                                          
+                                        }
+            else: print("Falta informacion, no se ha guardado")
             print("desea agregar otra pelicula?:\n\t1. Si \n\t2. no")
             selec = manejoEnteros()
             if selec == 1: continue
             elif selec == 2:break
             else: print("Ingrese 1 o 2")
-        print(peliculas)
-        input("Preciona Enter")
-#        contador1 = [conA,conD,conR]
-        #lpelicula = [peliculas]
+            print(peliculas)
+            input("Preciona Enter")
         
-#        with open(movie,'w+') as archivo2:
-#            json.dump(peliculas,archivo2,indent=4)
-#        with open(contador,'w+') as archivo3:
-#            json.dump(contador1,archivo3,indent=4)
+        
+        with open(movie,'w+') as archivo2:
+            json.dump(peliculas,archivo2,indent=4)
+        
 
  
-def editarPeliculas():
+def editarPeliculas(peliculas):
     while True:
         os.system('clear')
         print("ingrese el codigo de la pelicula:")
@@ -128,7 +111,7 @@ def editarPeliculas():
         elif selec == 2:break
         else: break
     
-def eliminarPelicula():
+def eliminarPelicula(peliculas):
     while True:
         os.system('clear')
         print('Ingrese el codigo de la pelicula')
