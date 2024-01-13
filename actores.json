@@ -1,6 +1,15 @@
 {
-    "Ac01": {
-        "nombre": "PepitoPerez",
+    "Ac01": {},
+    "Ac02": {
+        "nombre": "SilvestreStallone",
+        "rol": [
+            "Protagonista",
+            "Antagonista",
+            "Reparto"
+        ]
+    },
+    "Ac03": {
+        "nombre": "PedroSanchez",
         "rol": [
             "Protagonista",
             "Antagonista",

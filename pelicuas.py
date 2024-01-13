@@ -5,11 +5,13 @@ movie = "peliculas.json"
 
 def crearPeliculas(peliculas,genero,actores):
         while True:
+            with open(movie,'r') as archivo:
+                peliculas=json.load(archivo)
             contP = len(peliculas)
             codigo = f"P0{contP+1}"
-            os.system('clear')
+            os.system('cls')
             print("Ingrese el nombre de la pelicula (sin espacios):")
-            nombre = input("")
+            nombre = letras()
             print("Ingrese la duracion:\ncantidad de horas:")
             hora = manejoEnteros()
             print("minutos:")
@@ -20,7 +22,7 @@ def crearPeliculas(peliculas,genero,actores):
             actorTemporal = {}                
             while True:
                 print("Ingrese el nombre del actor:\n(Sin espacios y la primera letra en mayuscula ejemplo: PepitoPerez)")
-                nombreActor = input("")
+                nombreActor = letras()
                 for id in actores:
                     if nombreActor in actores[id].values():
                         print("Selecione el rol:\n\t1.Principal\n\t2.Antagonista\n\t3.Reparto")
@@ -40,7 +42,7 @@ def crearPeliculas(peliculas,genero,actores):
                 elif selec == 2:break
                 else: break
             print("Ingresa el nombre del genero")
-            generoP = input("")
+            generoP = letras()
             for clave in genero:
                 if generoP == genero[clave]['nombre']:
                     generoP = genero[clave]
@@ -56,6 +58,8 @@ def crearPeliculas(peliculas,genero,actores):
                                         }
             else: print("Falta informacion, no se ha guardado")
             print("desea agregar otra pelicula?:\n\t1. Si \n\t2. no")
+            with open(movie,'w+') as archivo2:
+                json.dump(peliculas,archivo2,indent=4)
             selec = manejoEnteros()
             if selec == 1: continue
             elif selec == 2:break
@@ -64,14 +68,11 @@ def crearPeliculas(peliculas,genero,actores):
             input("Preciona Enter")
         
         
-        with open(movie,'w+') as archivo2:
-            json.dump(peliculas,archivo2,indent=4)
-        
 
  
 def editarPeliculas(peliculas):
     while True:
-        os.system('clear')
+        os.system('cls')
         print("ingrese el codigo de la pelicula:")
         codigo = input("")
         if codigo in peliculas:
@@ -110,10 +111,12 @@ def editarPeliculas(peliculas):
         if selec == 1: continue
         elif selec == 2:break
         else: break
+    with open(movie,'w+') as archivo2:
+            json.dump(peliculas,archivo2,indent=4)
     
 def eliminarPelicula(peliculas):
     while True:
-        os.system('clear')
+        os.system('cls')
         print('Ingrese el codigo de la pelicula')
         codigo = input("")
         if codigo in peliculas:
@@ -132,4 +135,5 @@ def eliminarPelicula(peliculas):
         if selec == 1: continue
         elif selec == 2:break
         else: break
-    print(peliculas[codigo])
+    with open(movie,'w+') as archivo2:
+            json.dump(peliculas,archivo2,indent=4)

@@ -5,11 +5,14 @@ import json
 
 def crearGenero(generos):
     
-    contG=len(generos)
+    
     while True:
-        os.system("clear")
-        print("ingresa el nombre del genero")
-        nombregenero=input("")
+        with open('generos.json','r') as archivo:
+            generos=json.load(archivo)
+        contG=len(generos)
+        os.system("cls")
+        print("ingresa el nombre del genero:\n(sin espacios)")
+        nombregenero=letras()
         while True:
             for clave in generos:
                 if nombregenero in generos[clave]['nombre']:                

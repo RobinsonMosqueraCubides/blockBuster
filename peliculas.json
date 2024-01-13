@@ -8,7 +8,7 @@
         "duracion": "2:36:50",
         "actores": {
             "Ac01": {
-                "Nombre": "PepitoPerez",
+                "nombre": "PepitoPerez",
                 "rol": "Antagonista"
             }
         }

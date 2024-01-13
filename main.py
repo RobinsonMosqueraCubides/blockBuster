@@ -1,4 +1,5 @@
 import os
+from listas import *
 from generos import*
 from pelicuas import *
 from busqueda import *
@@ -17,19 +18,27 @@ def menuPrincial():
         print("Selecion la accion:\n\t1. Busqueda de Peliculas\n\t2. Registro peliculas\n\t3. Registro actores\n\t4. Generos\n\t5. Salir")
         selec = manejoEnteros()
         if selec == 1:
-            print("Selecion la accion:\n\t1. Busqueda por codigo\n\t2. Busqueda por nombre\n\t3. Menu anterior")
+            print("Selecion la accion:\n\t1. Busqueda por codigo\n\t2. Busqueda por nombre\n\t3. Lista peliculas\n\t4. Listar Peliculas Por actores\n\t5. Menu anterior")
             selec = manejoEnteros()
             if selec == 1: busquedaCodigo(peliculas)
             elif selec == 2: busqueraNombre(peliculas)
-            elif selec == 3: continue
+            elif selec == 3: listarPeliculas(peliculas)
+            elif selec == 4: listarPeliculasActor(peliculas)
+            elif selec == 5: continue
         elif selec == 2:
-            print("Selecione la accion:\n\t1. Registrar Pelicula\n\t2. Editar pelicula\n\t3. eliminar pelicula\n\t4. imprimir datos")
+            print("Selecione la accion:\n\t1. Registrar Pelicula\n\t2. Editar pelicula\n\t3. eliminar pelicula\n\t4. Menu anterior")
             select1 = manejoEnteros()
             if select1 == 1: crearPeliculas(peliculas,generos,actores)
             elif select1 == 2: editarPeliculas(peliculas)
             elif select1 == 3: eliminarPelicula(peliculas)
             elif select1 == 4: continue
-        elif selec == 3: crearActor(actores)
+        elif selec == 3: 
+            print("Selecion la accion:\n\t1. Crear actores\n\t2. Listar actores\n\t3. Eliminar actor\n\t4. Menu anterior")
+            selec = manejoEnteros()
+            if selec == 1: crearActor(actores)
+            elif selec == 2: listarActores(actores)
+            elif selec == 3: eliminarActor(actores)
+            elif selec == 4: continue
         elif selec == 4: 
             print("Selecion la accion:\n\t1. Crear generos\n\t2. Listar Generos\n\t3. Menu anterior")
             selec = manejoEnteros()
